@@ -11,7 +11,7 @@ class Star:
     def __init__(self):
         self.type = "star"
         """Признак объекта звезды"""
-        self.mass = 0
+        self.m = 0
         """Масса звезды"""
         self.x = 0
         """Координата по оси **x**"""
