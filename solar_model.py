@@ -21,7 +21,7 @@ def calculate_force(body, space_objects):
             continue
         r = ((body.x - obj.x)**2 + (body.y - obj.y)**2)**0.5
         F = (gravitational_constant * body.m * obj.m)/r**2
-        angle = math.atan2(abs(body.y - obj.y), abs(body.x - obj.x))
+        angle = math.atan2(obj.y - body.y, obj.x - body.x)
         body.Fx += F * math.cos(angle)
         body.Fy += F * math.sin(angle)
 
@@ -35,11 +35,11 @@ def move_space_object(body, dt):
     """
 
     ax = body.Fx/body.m
+    body.Vx += ax * dt
     body.x += body.Vx * dt
-    body.Vx += ax*dt
     ay = body.Fy/body.m
-    body.y += body.Vy * dt
     body.Vy += ay * dt
+    body.y += body.Vy * dt
 
 
 def recalculate_space_objects_positions(space_objects, dt):
