@@ -133,7 +133,7 @@ def main():
 
     time_speed = tkinter.DoubleVar()
     time_speed.set(1)
-    scale = tkinter.Scale(frame, variable=time_speed, orient=tkinter.HORIZONTAL)
+    scale = tkinter.Scale(frame, variable=time_speed, orient=tkinter.HORIZONTAL, from_=1, to=100)
     scale.pack(side=tkinter.LEFT)
 
     load_file_button = tkinter.Button(frame, text="Open file...", command=open_file_dialog)
