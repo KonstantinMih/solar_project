@@ -59,6 +59,15 @@ def parse_object_parameters(line, obj):
     pass
 
 
+def create_line(object):
+    if object.type == "star":
+        return "Star" + " " + str(object.R) + " " + str(object.color) + " " + str(object.m) + " " + str(object.x) + " "\
+               + str(object.y) + " " + str(object.Vx) + " " + str(object.Vy) + 2 * "\n"
+    if object.type == "planet":
+        return "Planet" + " " + str(object.R) + " " + str(object.color) + " " + str(object.m) + " " + str(object.x) + " " \
+               + str(object.y) + " " + str(object.Vx) + " " + str(object.Vy) + 2 * "\n"
+
+
 def write_space_objects_data_to_file(output_filename, space_objects):
     """Сохраняет данные о космических объектах в файл.
     Строки должны иметь следующий формат:
@@ -72,10 +81,8 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     """
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
-            print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
-            # FIXME: should store real values
+            out_file.writelines(create_line(obj))
 
-# FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
