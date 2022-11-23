@@ -34,7 +34,7 @@ def execution():
     """
     global physical_time
     global displayed_time
-    recalculate_space_objects_positions(space_objects, time_step.get())
+    recalculate_space_objects_positions(space_objects, time_step.get(), time_step.get()/(time_speed.get() * 10))
     for body in space_objects:
         update_object_position(space, body)
     physical_time += time_step.get()
@@ -132,6 +132,7 @@ def main():
     time_step_entry.pack(side=tkinter.LEFT)
 
     time_speed = tkinter.DoubleVar()
+    time_speed.set(1)
     scale = tkinter.Scale(frame, variable=time_speed, orient=tkinter.HORIZONTAL)
     scale.pack(side=tkinter.LEFT)
 
