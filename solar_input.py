@@ -1,5 +1,6 @@
 # coding: utf-8
 # license: GPLv3
+import matplotlib.pyplot as plt
 
 from solar_objects import Star, Planet
 
@@ -68,7 +69,7 @@ def create_line(object):
                + str(object.y) + " " + str(object.Vx) + " " + str(object.Vy) + 2 * "\n"
 
 
-def write_space_objects_data_to_file(output_filename, space_objects):
+def write_space_objects_data_to_file(output_filename, space_objects, objects_stats):
     """Сохраняет данные о космических объектах в файл.
     Строки должны иметь следующий формат:
     Star <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
@@ -80,8 +81,17 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     **space_objects** — список объектов планет и звёзд
     """
     with open(output_filename, 'w') as out_file:
-        for obj in space_objects:
-            out_file.writelines(create_line(obj))
+        if len(space_objects) != 2:
+            for obj in space_objects:
+                out_file.writelines(create_line(obj))
+        else:
+            objects_stats.to_csv(output_filename, sep=' ', mode='a')
+            """plt.plot(objects_stats['V'], objects_stats['t'])
+            plt.savefig(output_filename + " V(t)")
+            plt.plot(objects_stats['V'], objects_stats['r'])
+            plt.savefig(output_filename + " V(t)")
+            plt.plot(objects_stats['V'], objects_stats['t'])
+            plt.savefig(output_filename + " V(t)")"""
 
 
 if __name__ == "__main__":
