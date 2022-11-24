@@ -86,12 +86,22 @@ def write_space_objects_data_to_file(output_filename, space_objects, objects_sta
                 out_file.writelines(create_line(obj))
         else:
             objects_stats.to_csv(output_filename, sep=' ', mode='a')
-            """plt.plot(objects_stats['V'], objects_stats['t'])
-            plt.savefig(output_filename + " V(t)")
-            plt.plot(objects_stats['V'], objects_stats['r'])
-            plt.savefig(output_filename + " V(t)")
-            plt.plot(objects_stats['V'], objects_stats['t'])
-            plt.savefig(output_filename + " V(t)")"""
+            fig1, a1 = plt.subplots()
+            fig2, a2 = plt.subplots()
+            fig3, a3 = plt.subplots()
+            a1.xlabel = "t"
+            a1.ylabel = "V"
+            a2.xlabel = "t"
+            a2.ylabel = "r"
+            a3.xlabel = "r"
+            a3.ylabel = "V"
+            image1 = a1.plot(objects_stats['t'], objects_stats['V'])
+            image2 = a2.plot(objects_stats['t'], objects_stats['r'])
+            image3 = a3.plot(objects_stats['r'], objects_stats['V'])
+            fig1.savefig(output_filename + " V(t)")
+            fig2.savefig(output_filename + " r(t)")
+            fig3.savefig(output_filename + " V(r)")
+            plt.show()
 
 
 if __name__ == "__main__":
